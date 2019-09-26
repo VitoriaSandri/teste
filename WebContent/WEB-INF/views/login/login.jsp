@@ -12,7 +12,7 @@
 <body>
 	<h3>Acesso ao Sistema</h3>
 	<form action="efetuaLogin" method="post" >
-		<label>Login1:</label><br />
+		<label>Login11:</label><br />
 		<input name="login" > <br/>
 		<label>Senha:</label><br />
 		<input name="senha" type="password" value=""><br/><br/>
