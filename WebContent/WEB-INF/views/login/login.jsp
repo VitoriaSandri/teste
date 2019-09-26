@@ -12,9 +12,9 @@
 <body>
 	<h3>Acesso ao Sistema</h3>
 	<form action="efetuaLogin" method="post" >
-		<label>Login11:</label><br />
+		<label>Login2:</label><br />
 		<input name="login" > <br/>
-		<label>Senha:</label><br />
+		<label>Senha2:</label><br />
 		<input name="senha" type="password" value=""><br/><br/>
 		<input type="submit" value="Entrar">
 	</form>
