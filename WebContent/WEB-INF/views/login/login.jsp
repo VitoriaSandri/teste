@@ -14,7 +14,7 @@
 	<form action="efetuaLogin" method="post" >
 		<label>Login3:</label><br />
 		<input name="login" > <br/>
-		<label>Senha2:</label><br />
+		<label>Senha3:</label><br />
 		<input name="senha" type="password" value=""><br/><br/>
 		<input type="submit" value="Entrar">
 	</form>
