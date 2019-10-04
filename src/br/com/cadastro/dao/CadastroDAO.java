@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import br.com.cadastro.model.Usuario;
+import br.com.cadastro.model.Cadastro;
 
 @Repository
 public class CadastroDAO {
@@ -28,24 +28,16 @@ public class CadastroDAO {
         }
 	}
 	
-	public void adiciona(Usuario usuario){
-		String sql = "insert into cadastros (nome, login , senha, dataNascimento, altura) " +
-					"values (?, ?, MD5(?), ?, ?)";
+	public void adiciona(Cadastro cadastro){
+		String sql = "insert into cadastros (nome, sexo, descricao, idCadastrocadastro) " +
+					"values (?, ?, ?, ?)";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			stmt.setString(1, usuario.getNome());
-			stmt.setString(2, usuario.getLogin());
-			stmt.setString(3, usuario.getSenha());
-			if(usuario.getDataNascimento() != null)
-			{
-				stmt.setDate(4, new java.sql.Date(usuario.getDataNascimento().getTimeInMillis()));
-			}
-			else
-			{
-				stmt.setDate(4, null);
-			}
-			stmt.setFloat(5, usuario.getAltura());
+			stmt.setString(1, cadastro.getNome());
+			stmt.setString(2, cadastro.getSexo());
+			stmt.setString(3, cadastro.getDescricao());
+			stmt.setLong(4, cadastro.getIdCadastroUsuario());
 			stmt.execute();
 			stmt.close();
 		}catch (SQLException e){
@@ -53,27 +45,27 @@ public class CadastroDAO {
 		}
 	}
 	
-	public List<Usuario> lista(){
+	public List<Cadastro> lista(){
 		try{
-			List<Usuario> cadastros = new ArrayList<Usuario>();
+			List<Cadastro> cadastros = new ArrayList<Cadastro>();
 			PreparedStatement stmt = this.connection.prepareStatement
 			("SELECT * FROM cadastros");
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next())
 			{
-				Usuario usuario = new Usuario();
+				Cadastro cadastro = new Cadastro();
 				
-				usuario.setId(rs.getLong("id"));
-				usuario.setNome(rs.getString("nome"));
-				usuario.setLogin(rs.getString("login"));
-				if(rs.getDate("dataNascimento") != null){
-					Calendar dataNascimento = Calendar.getInstance();
-					dataNascimento.setTime(rs.getDate("dataNascimento"));
-					usuario.setDataNascimento(dataNascimento);
+				cadastro.setId(rs.getLong("id"));
+				cadastro.setNome(rs.getString("nome"));
+				cadastro.setSexo(rs.getString("sexo"));
+				cadastro.setIdCadastroUsuario();
+				if(rs.getDate("data_hora") != null){
+					Calendar data_hora = Calendar.getInstance();
+					data_hora.setTime(rs.getDate("data_hora"));
+					cadastro.setData_hora(data_hora);
 				}
-				usuario.setAltura(rs.getFloat("altura"));
-				cadastros.add(usuario);
+				cadastros.add(cadastro);
 			}
 			rs.close();
 			stmt.close();
@@ -84,12 +76,12 @@ public class CadastroDAO {
 		}
 	}
 	
-	public void remove(Usuario usuario){
+	public void remove(Cadastro cadastro){
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement
 			("delete from cadastros where id = ?");
 			
-			stmt.setLong(1, usuario.getId());
+			stmt.setLong(1, cadastro.getId());
 			stmt.execute();
 			stmt.close();
 
@@ -99,7 +91,7 @@ public class CadastroDAO {
 		}
 	}
 	
-	public Usuario buscaPorId(Long id){
+	public Cadastro buscaPorId(Long id){
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement("select * from cadastros");
@@ -110,19 +102,19 @@ public class CadastroDAO {
 
 				if(id == rs.getLong("id"))
 				{
-					Usuario usuario = new Usuario();
+					Cadastro cadastro = new Cadastro();
 
-					usuario.setId(rs.getLong("id"));
-					usuario.setNome(rs.getString("nome"));
-					usuario.setLogin(rs.getString("login"));
-					if(rs.getDate("dataNascimento") != null){
-						Calendar dataNascimento = Calendar.getInstance();
-						dataNascimento.setTime(rs.getDate("dataNascimento"));
-						usuario.setDataNascimento(dataNascimento);
+					cadastro.setId(rs.getLong("id"));
+					cadastro.setNome(rs.getString("nome"));
+					cadastro.setSexo(rs.getString("sexo"));
+					cadastro.setIdCadastroUsuario();
+					if(rs.getDate("data_hora") != null){
+						Calendar data_hora = Calendar.getInstance();
+						data_hora.setTime(rs.getDate("data_hora"));
+						cadastro.setData_hora(data_hora);
 					}
-					usuario.setAltura(rs.getFloat("altura"));
 					
-					return usuario;
+					return cadastro;
 				}
 			}
 				return null;
@@ -132,25 +124,25 @@ public class CadastroDAO {
 	}
 	
 	
-	public void altera(Usuario usuario){
+	public void altera(Cadastro cadastro){
 		String sql = "update cadastros set nome=? , login=?, senha=MD5(?), dataNascimento=?, altura=? where id=?";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
 			
-			stmt.setString(1, usuario.getNome());
-			stmt.setString(2, usuario.getLogin());
-			stmt.setString(3, usuario.getSenha());
-			if(usuario.getDataNascimento() != null)
+			stmt.setString(1, cadastro.getNome());
+			stmt.setString(2, cadastro.getDescricao());
+			stmt.setString(3, cadastro.getSexo());
+			if(cadastro.getData_hora() != null)
 			{
-				stmt.setDate(4, new java.sql.Date(usuario.getDataNascimento().getTimeInMillis()));
+				stmt.setDate(4, new java.sql.Date(cadastro.getData_hora().getTimeInMillis()));
 			}
 			else
 			{
 				stmt.setDate(4, null);
 			}
-			stmt.setFloat(5, usuario.getAltura());
-			stmt.setLong(6, usuario.getId());
+			stmt.setLong(5, cadastro.getIdCadastroUsuario());
+			stmt.setLong(6, cadastro.getId());
 				
 			stmt.execute();
 			stmt.close();

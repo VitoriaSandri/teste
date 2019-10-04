@@ -1,10 +1,12 @@
 package br.com.cadastro.model;
 
+import java.util.Calendar;
+
 public class Cadastro {
 	private Long id;
-	private String login;
-	private String sexo;
+	private Calendar data_hora;
 	private String nome;
+	private String sexo;	
 	private String descricao;
 	private Long idCadastroUsuario;
 	
@@ -14,23 +16,23 @@ public class Cadastro {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getLogin() {
-		return login;
+	public Calendar getData_hora() {
+		return data_hora;
 	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getSexo() {
-		return sexo;
-	}
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setData_hora(Calendar data_hora) {
+		this.data_hora = data_hora;
 	}
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -41,7 +43,8 @@ public class Cadastro {
 	public Long getIdCadastroUsuario() {
 		return idCadastroUsuario;
 	}
-	public void setIdCadastroUsuario(Long idCadastroUsuario) {
-		this.idCadastroUsuario = idCadastroUsuario;
+	public void setIdCadastroUsuario() {
+		Usuario usuario = new Usuario();
+		this.idCadastroUsuario = usuario.getId();
 	}
 }
