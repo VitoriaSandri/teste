@@ -19,8 +19,9 @@ public class Cadastro {
 	public Calendar getData_hora() {
 		return data_hora;
 	}
-	public void setData_hora(Calendar data_hora) {
-		this.data_hora = data_hora;
+	public void setData_hora() {
+		Calendar hoje = Calendar.getInstance();
+		this.data_hora = hoje;
 	}
 	public String getNome() {
 		return nome;
@@ -43,8 +44,7 @@ public class Cadastro {
 	public Long getIdCadastroUsuario() {
 		return idCadastroUsuario;
 	}
-	public void setIdCadastroUsuario() {
-		Usuario usuario = new Usuario();
-		this.idCadastroUsuario = usuario.getId();
+	public void setIdCadastroUsuario(Long idCadastroUsuario) {
+		this.idCadastroUsuario = idCadastroUsuario;
 	}
 }

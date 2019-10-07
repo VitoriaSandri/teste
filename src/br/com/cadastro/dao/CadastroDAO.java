@@ -29,7 +29,7 @@ public class CadastroDAO {
 	}
 	
 	public void adiciona(Cadastro cadastro){
-		String sql = "insert into cadastros (nome, sexo, descricao, idCadastrocadastro) " +
+		String sql = "insert into cadastros (nome, sexo, descricao, idCadastroUsuario) " +
 					"values (?, ?, ?, ?)";
 		
 		try{
@@ -57,14 +57,11 @@ public class CadastroDAO {
 				Cadastro cadastro = new Cadastro();
 				
 				cadastro.setId(rs.getLong("id"));
+				cadastro.setData_hora();
 				cadastro.setNome(rs.getString("nome"));
 				cadastro.setSexo(rs.getString("sexo"));
-				cadastro.setIdCadastroUsuario();
-				if(rs.getDate("data_hora") != null){
-					Calendar data_hora = Calendar.getInstance();
-					data_hora.setTime(rs.getDate("data_hora"));
-					cadastro.setData_hora(data_hora);
-				}
+				cadastro.setDescricao(rs.getString("descricao"));
+				cadastro.setIdCadastroUsuario(rs.getLong("idCadastroUsuario"));
 				cadastros.add(cadastro);
 			}
 			rs.close();
@@ -107,13 +104,7 @@ public class CadastroDAO {
 					cadastro.setId(rs.getLong("id"));
 					cadastro.setNome(rs.getString("nome"));
 					cadastro.setSexo(rs.getString("sexo"));
-					cadastro.setIdCadastroUsuario();
-					if(rs.getDate("data_hora") != null){
-						Calendar data_hora = Calendar.getInstance();
-						data_hora.setTime(rs.getDate("data_hora"));
-						cadastro.setData_hora(data_hora);
-					}
-					
+					cadastro.setIdCadastroUsuario(rs.getLong("idCadastroUsuario"));					
 					return cadastro;
 				}
 			}
@@ -125,25 +116,16 @@ public class CadastroDAO {
 	
 	
 	public void altera(Cadastro cadastro){
-		String sql = "update cadastros set nome=? , login=?, senha=MD5(?), dataNascimento=?, altura=? where id=?";
+		String sql = "update cadastros set nome=? ,sexo=?, descricao=?, idCadastroUsuario=? where id=?";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
 			
 			stmt.setString(1, cadastro.getNome());
-			stmt.setString(2, cadastro.getDescricao());
-			stmt.setString(3, cadastro.getSexo());
-			if(cadastro.getData_hora() != null)
-			{
-				stmt.setDate(4, new java.sql.Date(cadastro.getData_hora().getTimeInMillis()));
-			}
-			else
-			{
-				stmt.setDate(4, null);
-			}
-			stmt.setLong(5, cadastro.getIdCadastroUsuario());
-			stmt.setLong(6, cadastro.getId());
-				
+			stmt.setString(2, cadastro.getSexo());
+			stmt.setString(3, cadastro.getDescricao());
+			stmt.setLong(4, cadastro.getIdCadastroUsuario());
+			stmt.setLong(5, cadastro.getId());			
 			stmt.execute();
 			stmt.close();
 			
