@@ -47,4 +47,5 @@ public class Cadastro {
 	public void setIdCadastroUsuario(Long idCadastroUsuario) {
 		this.idCadastroUsuario = idCadastroUsuario;
 	}
+	
 }

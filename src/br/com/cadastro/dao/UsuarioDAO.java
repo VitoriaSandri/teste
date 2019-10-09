@@ -29,23 +29,24 @@ public class UsuarioDAO {
 	}
 	
 	public void adiciona(Usuario usuario){
-		String sql = "insert into usuarios (nome, login , senha, dataNascimento, altura) " +
-					"values (?, ?, MD5(?), ?, ?)";
+		String sql = "insert into usuarios (id, nome, login , senha, dataNascimento, altura) " +
+					"values (?, ?, ?, MD5(?), ?, ?)";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			stmt.setString(1, usuario.getNome());
-			stmt.setString(2, usuario.getLogin());
-			stmt.setString(3, usuario.getSenha());
+			stmt.setLong(1, usuario.getId());
+			stmt.setString(2, usuario.getNome());
+			stmt.setString(3, usuario.getLogin());
+			stmt.setString(4, usuario.getSenha());
 			if(usuario.getDataNascimento() != null)
 			{
-				stmt.setDate(4, new java.sql.Date(usuario.getDataNascimento().getTimeInMillis()));
+				stmt.setDate(5, new java.sql.Date(usuario.getDataNascimento().getTimeInMillis()));
 			}
 			else
 			{
-				stmt.setDate(4, null);
+				stmt.setDate(5, null);
 			}
-			stmt.setFloat(5, usuario.getAltura());
+			stmt.setFloat(6, usuario.getAltura());
 			stmt.execute();
 			stmt.close();
 		}catch (SQLException e){

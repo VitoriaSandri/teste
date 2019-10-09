@@ -16,6 +16,10 @@
 	Cadastro de Usuarios <br /><br />
 	
 	<form action="adicionaUsuario" method="post">
+				<label for="Id">Id</label>  
+				<input type="text" name="id" value="${usuario.id}" >
+				<form:errors path="usuario.id" cssStyle="color:#B71C1C"/><br />
+	
 				<label for="Nome">Nome</label>  
 				<input type="text" name="nome" value="${usuario.nome}" >
 				<form:errors path="usuario.nome" cssStyle="color:#B71C1C"/><br />

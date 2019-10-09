@@ -7,14 +7,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Sistema Cadastro</title>
+<title>Login</title>
 </head>
 <body>
 	<h3>Acesso ao Sistema</h3>
 	<form action="efetuaLogin" method="post" >
-		<label>Login3:</label><br />
+		<label>Login:</label><br />
 		<input name="login" > <br/>
-		<label>Senha3:</label><br />
+		<label>Senha:</label><br />
 		<input name="senha" type="password" value=""><br/><br/>
 		<input type="submit" value="Entrar">
 	</form>

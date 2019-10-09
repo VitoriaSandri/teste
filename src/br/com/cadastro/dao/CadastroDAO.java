@@ -29,15 +29,16 @@ public class CadastroDAO {
 	}
 	
 	public void adiciona(Cadastro cadastro){
-		String sql = "insert into cadastros (nome, sexo, descricao, idCadastroUsuario) " +
-					"values (?, ?, ?, ?)";
+		String sql = "insert into cadastros (id, nome, sexo, descricao, idCadastroUsuario) " +
+					"values (?, ?, ?, ?, ?)";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			stmt.setString(1, cadastro.getNome());
-			stmt.setString(2, cadastro.getSexo());
-			stmt.setString(3, cadastro.getDescricao());
-			stmt.setLong(4, cadastro.getIdCadastroUsuario());
+			stmt.setLong(1, cadastro.getId());
+			stmt.setString(2, cadastro.getNome());
+			stmt.setString(3, cadastro.getSexo());
+			stmt.setString(4, cadastro.getDescricao());
+			stmt.setLong(5, cadastro.getIdCadastroUsuario());
 			stmt.execute();
 			stmt.close();
 		}catch (SQLException e){
@@ -102,8 +103,10 @@ public class CadastroDAO {
 					Cadastro cadastro = new Cadastro();
 
 					cadastro.setId(rs.getLong("id"));
+					cadastro.setData_hora();
 					cadastro.setNome(rs.getString("nome"));
 					cadastro.setSexo(rs.getString("sexo"));
+					cadastro.setDescricao(rs.getString("descricao"));
 					cadastro.setIdCadastroUsuario(rs.getLong("idCadastroUsuario"));					
 					return cadastro;
 				}
