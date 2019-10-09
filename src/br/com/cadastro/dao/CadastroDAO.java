@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -29,16 +28,15 @@ public class CadastroDAO {
 	}
 	
 	public void adiciona(Cadastro cadastro){
-		String sql = "insert into cadastros (id, nome, sexo, descricao, idCadastroUsuario) " +
-					"values (?, ?, ?, ?, ?)";
+		String sql = "insert into cadastros (nome, sexo, descricao, idCadastroUsuario) " +
+					"values (?, ?, ?, ?)";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			stmt.setLong(1, cadastro.getId());
-			stmt.setString(2, cadastro.getNome());
-			stmt.setString(3, cadastro.getSexo());
-			stmt.setString(4, cadastro.getDescricao());
-			stmt.setLong(5, cadastro.getIdCadastroUsuario());
+			stmt.setString(1, cadastro.getNome());
+			stmt.setString(2, cadastro.getSexo());
+			stmt.setString(3, cadastro.getDescricao());
+			stmt.setLong(4, cadastro.getIdCadastroUsuario());
 			stmt.execute();
 			stmt.close();
 		}catch (SQLException e){

@@ -30,7 +30,7 @@ public class CadastroController {
 	
 	@RequestMapping("adicionaCadastro")
 	public String adiciona(@Valid Cadastro cadastro, BindingResult result) throws ClassNotFoundException {
-		if(result.hasFieldErrors("id") || result.hasFieldErrors("nome") || result.hasFieldErrors("sexo") || result.hasFieldErrors("descricao") || result.hasFieldErrors("idCadastroUsuario")) {
+		if(result.hasFieldErrors("nome") || result.hasFieldErrors("sexo") || result.hasFieldErrors("descricao") || result.hasFieldErrors("idCadastroUsuario")) {
 			return "cadastro/insere";
 		}
 		daoCadastro.adiciona(cadastro);
@@ -45,7 +45,7 @@ public class CadastroController {
 	
 	@RequestMapping("alterarCadastro")
 	public String alterar(@Valid Cadastro cadastro, BindingResult result) throws ClassNotFoundException{
-		if(result.hasFieldErrors("id") || result.hasFieldErrors("nome") || result.hasFieldErrors("sexo") || result.hasFieldErrors("descricao") || result.hasFieldErrors("idCadastroUsuario")) {
+		if(result.hasFieldErrors("nome") || result.hasFieldErrors("sexo") || result.hasFieldErrors("descricao") || result.hasFieldErrors("idCadastroUsuario")) {
 			return "cadastro/edita";
 		}
 		daoCadastro.altera(cadastro);

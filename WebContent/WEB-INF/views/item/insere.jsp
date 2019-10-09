@@ -16,11 +16,7 @@
 	Cadastro de Item <br /><br />
 	
 	<form action="adicionaItem" method="post">
-	
-				<label for="ID">Id</label>  
-				<input type="text" name="id" value="${item.id}" >
-				<form:errors path="item.id" cssStyle="color:#B71C1C"/><br />
-				
+					
 				<label for="NomeItem">Nome Item</label>  
 				<input type="text" name="nomeItem" value="${item.nomeItem}" >
 				<form:errors path="item.nomeItem" cssStyle="color:#B71C1C"/><br />

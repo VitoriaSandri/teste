@@ -16,10 +16,6 @@
 	Cadastro de Dependentes <br /><br />
 	
 	<form action="adicionaCadastro" method="post">
-	
-				<label for="ID">Id</label>  
-				<input type="text" name="id" value="${cadastro.id}" >
-				<form:errors path="cadastro.id" cssStyle="color:#B71C1C"/><br />
 				
 				<label for="Nome">Nome</label>  
 				<input type="text" name="nome" value="${cadastro.nome}" >

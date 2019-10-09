@@ -10,9 +10,11 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import br.com.cadastro.model.Item;
 
+@Repository
 public class ItemDAO {
 	Connection connection;
 	
@@ -26,13 +28,12 @@ public class ItemDAO {
 	}
 	
 	public void adiciona(Item item){
-		String sql = "insert into itens (id, nome) " +
-					"values (?, ?)";
+		String sql = "insert into itens (nomeItem) " +
+					"values (?)";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
-			stmt.setLong(1, item.getId());
-			stmt.setString(2, item.getNomeItem());
+			stmt.setString(1, item.getNomeItem());
 			stmt.execute();
 			stmt.close();
 		}catch (SQLException e){
@@ -105,13 +106,13 @@ public class ItemDAO {
 	}
 
 	public void altera(Item item){
-		String sql = "update itens set nome=? where id=?";
+		String sql = "update itens set nomeItem=? where id = ?";
 		
 		try{
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
 			
 			stmt.setString(1, item.getNomeItem());
-			stmt.setLong(2, item.getId());			
+			stmt.setLong(2, item.getId());	
 			stmt.execute();
 			stmt.close();
 			

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.cadastro.dao.ItemDAO;
 import br.com.cadastro.model.Item;
+import br.com.cadastro.model.Usuario;
 
 @Controller
 public class ItemController {
@@ -30,7 +31,7 @@ public class ItemController {
 	
 	@RequestMapping("adicionaItem")
 	public String adiciona(@Valid Item item, BindingResult result) throws ClassNotFoundException {
-		if(result.hasFieldErrors("id") || result.hasFieldErrors("nomeItem")) {
+		if(result.hasFieldErrors("nomeItem")) {
 			return "item/insere";
 		}
 		daoItem.adiciona(item);
@@ -44,13 +45,13 @@ public class ItemController {
 	}
 	
 	@RequestMapping("alterarItem")
-	public String alterar(@Valid Item item, BindingResult result) throws ClassNotFoundException{
-		if(result.hasFieldErrors("id") || result.hasFieldErrors("nomeItem")) {
-			return "item/edita";
-		}
+	public String altera(@Valid Item item, BindingResult result) throws ClassNotFoundException {
+		if(result.hasFieldErrors("nomeItem")) {
+			 return "item/edita";
+	     }
 		daoItem.altera(item);
-		return "redirect:listaItem";
-	}
+        return "redirect:listaItem";
+    }
 	
 	@RequestMapping("removeItem")
 	public String remove(Item item) throws ClassNotFoundException{

@@ -3,6 +3,7 @@ package br.com.cadastro.model;
 public class Item {
 	private Long id;
 	private String nomeItem;
+	
 	public Long getId() {
 		return id;
 	}

@@ -18,11 +18,10 @@
 	
 	<form action="alterarCadastro" method="post" class="form-horizontal">
 	
-	<label for="Id">Id</label>
-	<input type="text" name="id" value="${cadastro.id}" disabled/><br/>
 	
-	<label for="DataHora">Data Hora</label>
-	<input type="text" name="data_hora" value="<fmt:formatDate value="${cadastro.data_hora.time}" pattern="dd/MM/yyyy HH:MM:SS" />" disabled /><br/>
+	<input type="hidden" name="id" value="${cadastro.id}"/><br/>
+	
+	<input type="hidden" name="data_hora" value="<fmt:formatDate value="${cadastro.data_hora.time}" pattern="dd/MM/yyyy HH:MM:SS" />" /><br/>
 				
 	<label for="Nome">Nome</label>  
 	<input type="text" name="nome" value="${cadastro.nome}" > 

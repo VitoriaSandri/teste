@@ -16,10 +16,10 @@
 	<br />
 	<br />
 	
-	<form action="alteraUsuario" method="post" class="form-horizontal">
-	<label for="Id">Id</label>
-	<input type="text" name="id" value="${usuario.id}" disabled /><br/>
-				
+	<form action="alteraUsuario" method="post" class="form-horizontal">	
+	
+	<input type="hidden" name="id" value="${usuario.id}" />
+			
 	<label for="Nome">Nome</label>  
 	<input type="text" name="nome" value="${usuario.nome}" > 
 	<form:errors path="usuario.nome" cssStyle="color:#B71C1C"/><br />

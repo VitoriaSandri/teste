@@ -18,12 +18,11 @@
 	
 	<form action="alterarItem" method="post" class="form-horizontal">
 	
-	<label for="Id">Id</label>
-	<input type="text" name="id" value="${item.id}" disabled/><br/>
+	<input type="hidden" name="id" value="${item.id}"/><br/>
 	
 	<label for="NomeItem">Nome Item</label>  
-	<input type="text" name="nomeItem" value="${item.item}" > 
-	<form:errors path="item.Item" cssStyle="color:#B71C1C"/><br />
+	<input type="text" name="nomeItem" value="${item.nomeItem}" > 
+	<form:errors path="item.nomeItem" cssStyle="color:#B71C1C"/><br />
 
 	<input type="submit" value="Alterar">
 	
